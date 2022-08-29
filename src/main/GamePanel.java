@@ -1,5 +1,7 @@
 package main;
 
+import entity.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +11,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int originalTileSize = 16; // 16x16 tile
     final int scale = 3; // 16 x 3(scale) = 48
 
-    final int tileSize = originalTileSize * scale; // 48*48 tile
+    public final int tileSize = originalTileSize * scale; // 48*48 tile
     final int maxScreenWidth = 16;
     final int maxScreenHeight = 12;
     final int screenWidth = tileSize * maxScreenWidth; // 768 pixels = 48 * 16
@@ -20,6 +22,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
+    Player player = new Player(this, keyHandler);
 
     // Set player's default position
     int playerX = 100;
@@ -41,50 +44,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     @Override
-//    public void run() {
-//
-//        double drawInterval = 1000000000 / FPS; // 0.01666 seconds
-//        double nextDrawTime = System.nanoTime() + drawInterval;
-//
-//        while (gameThread != null) {
-//
-//            // 1 UPDATE: update information such as character positions.
-//            update();
-//
-//            // 2 DRAW: draw the screen with the updated information.
-//            repaint(); // calling the paintComponent method
-//
-//
-//            try {
-//                double remainingTime = nextDrawTime - System.nanoTime();
-//                remainingTime = remainingTime / 1000000;
-//
-//                if (remainingTime < 0) {
-//                    remainingTime = 0;
-//                }
-//
-//                Thread.sleep((long) remainingTime);
-//
-//                nextDrawTime = nextDrawTime + drawInterval;
-//
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//
-////            System.out.println("The game loop is running");
-//
-//            // 1,000,000,000 nanoseconds = 1 second
-//            // System.nanoTime: returns the current value of the running JVMs high-res time in nanoseconds.
-////            long currentTime = System.nanoTime();
-////            System.out.println("Current Time: " + currentTime);
-//
-//            //1,000 milliseconds = 1 second. nanoTime is more accurate than currentTimeMillis method.
-////            long currentTime2 = System.currentTimeMillis();
-//
-//
-//        }
-//    }
-
     public void run() {
 
         double drawInterval = 1000000000 / FPS;
@@ -118,17 +77,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        // X value increases to the right
-        // Y value increases as they go down
-        if (keyHandler.upPressed == true) {
-            playerY = playerY - playerSpeed;
-        } else if (keyHandler.downPressed == true) {
-            playerY = playerY + playerSpeed;
-        } else if (keyHandler.leftPressed == true) {
-            playerX = playerX - playerSpeed;
-        } else if (keyHandler.rightPressed == true) {
-            playerX = playerX + playerSpeed;
-        }
+        player.update();
     }
 
     public void paintComponent(Graphics graphics) {
@@ -136,9 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphics;
 
-        graphics2D.setColor(Color.white);
-
-        graphics2D.fillRect(playerX, playerY, tileSize, tileSize);
+        player.draw(graphics2D);
 
         graphics2D.dispose();
     }
