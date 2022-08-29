@@ -41,47 +41,70 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     @Override
+//    public void run() {
+//
+//        double drawInterval = 1000000000 / FPS; // 0.01666 seconds
+//        double nextDrawTime = System.nanoTime() + drawInterval;
+//
+//        while (gameThread != null) {
+//
+//            // 1 UPDATE: update information such as character positions.
+//            update();
+//
+//            // 2 DRAW: draw the screen with the updated information.
+//            repaint(); // calling the paintComponent method
+//
+//
+//            try {
+//                double remainingTime = nextDrawTime - System.nanoTime();
+//                remainingTime = remainingTime / 1000000;
+//
+//                if (remainingTime < 0) {
+//                    remainingTime = 0;
+//                }
+//
+//                Thread.sleep((long) remainingTime);
+//
+//                nextDrawTime = nextDrawTime + drawInterval;
+//
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//
+////            System.out.println("The game loop is running");
+//
+//            // 1,000,000,000 nanoseconds = 1 second
+//            // System.nanoTime: returns the current value of the running JVMs high-res time in nanoseconds.
+////            long currentTime = System.nanoTime();
+////            System.out.println("Current Time: " + currentTime);
+//
+//            //1,000 milliseconds = 1 second. nanoTime is more accurate than currentTimeMillis method.
+////            long currentTime2 = System.currentTimeMillis();
+//
+//
+//        }
+//    }
+
     public void run() {
 
-        double drawInterval = 1000000000 / FPS; // 0.01666 seconds
-        double nextDrawTime = System.nanoTime() + drawInterval;
+        double drawInterval = 1000000000 / FPS;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
 
         while (gameThread != null) {
 
-            // 1 UPDATE: update information such as character positions.
-            update();
+            currentTime = System.nanoTime(); // check current time
 
-            // 2 DRAW: draw the screen with the updated information.
-            repaint(); // calling the paintComponent method
+            delta += (currentTime - lastTime) / drawInterval; // subtract last time by cur
 
+            lastTime = currentTime;
 
-            try {
-                double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime = remainingTime / 1000000;
-
-                if (remainingTime < 0) {
-                    remainingTime = 0;
-                }
-
-                Thread.sleep((long) remainingTime);
-
-                nextDrawTime = nextDrawTime + drawInterval;
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (delta >= 1) {
+                update();
+                repaint();
+                delta--;
             }
-
-//            System.out.println("The game loop is running");
-
-            // 1,000,000,000 nanoseconds = 1 second
-            // System.nanoTime: returns the current value of the running JVMs high-res time in nanoseconds.
-//            long currentTime = System.nanoTime();
-//            System.out.println("Current Time: " + currentTime);
-
-            //1,000 milliseconds = 1 second. nanoTime is more accurate than currentTimeMillis method.
-//            long currentTime2 = System.currentTimeMillis();
-
-
         }
     }
 
