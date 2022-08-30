@@ -24,6 +24,7 @@ public class TileManager {
         mapTileNumber = new int[gamePanel.maxScreenWidth][gamePanel.maxScreenHeight];
 
         getTileImage();
+        loadMap("../res/maps/map01.txt");
     }
 
     public void getTileImage() {
@@ -43,9 +44,9 @@ public class TileManager {
         }
     }
 
-    public void loadMap() {
+    public void loadMap(String filePath) {
         try {
-            InputStream inputStream = getClass().getResourceAsStream("../res/maps.txt");
+            InputStream inputStream = getClass().getResourceAsStream(filePath);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
             int row = 0;
@@ -57,12 +58,12 @@ public class TileManager {
                 while (row < gamePanel.maxScreenWidth) {
                     String numbers[] = line.split(" ") ;
 
-                    int number = Integer.parseInt(numbers[column]);
+                    int number = Integer.parseInt(numbers[row]);
 
                     mapTileNumber[row][column] = number;
                     row++;
                 }
-                if (row == gamePanel.maxScreenHeight) {
+                if (row == gamePanel.maxScreenWidth) {
                     row = 0;
                     column++;
                 }
@@ -85,15 +86,20 @@ public class TileManager {
         int x = 0;
         int y = 0;
 
-        while (column < gamePanel.maxScreenWidth && row < gamePanel.maxScreenHeight) {
-            graphics2D.drawImage(tile[0].image, x, y, gamePanel.tileSize, gamePanel.tileSize,null);
-            column++;
+        while (row < gamePanel.maxScreenWidth && column < gamePanel.maxScreenHeight) {
+
+            int tileNumber = mapTileNumber[row][column];
+            graphics2D.drawImage(tile[tileNumber].image, x, y, gamePanel.tileSize, gamePanel.tileSize,null);
+            // below code is a fixed image.
+//            graphics2D.drawImage(tile[0].image, x, y, gamePanel.tileSize, gamePanel.tileSize,null);
+
+            row++;
             x += gamePanel.tileSize;
 
-            if (column == gamePanel.maxScreenWidth) {
-                column = 0;
+            if (row == gamePanel.maxScreenWidth) {
+                row = 0;
                 x = 0;
-                row++;
+                column++;
                 y += gamePanel.tileSize;
             }
         }
