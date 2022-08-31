@@ -10,12 +10,12 @@ import java.io.IOException;
 
 public class Player extends Entity {
 
-    GamePanel gamePanel;
-    KeyHandler keyHandler;
+    GamePanel gp;
+    KeyHandler keyH;
 
-    public Player(GamePanel gamePanel, KeyHandler keyHandler) {
-        this.gamePanel = gamePanel;
-        this.keyHandler = keyHandler;
+    public Player(GamePanel gp, KeyHandler keyH) {
+        this.gp = gp;
+        this.keyH = keyH;
 
         setDefaultValues();
         getPlayerImage();
@@ -29,41 +29,43 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
-
         try {
+            up1 = ImageIO.read(getClass().getResourceAsStream("../res/player/boy_up_1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("../res/player/boy_up_2.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("../res/player/boy_down_1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("../res/player/boy_down_2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("../res/player/boy_left_1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("../res/player/boy_left_2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("../res/player/boy_right_1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("../res/player/boy_right_2.png"));
 
-            up1 = ImageIO.read(getClass().getResourceAsStream("../res/player/player_up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("../res/player/player_up2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("../res/player/player_down1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("../res/player/player_down2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("../res/player/player_left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("../res/player/player_left2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("../res/player/player_right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("../res/player/player_right2.png"));
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void update() {
-        if (keyHandler.upPressed == true || keyHandler.downPressed == true || keyHandler.leftPressed == true || keyHandler.rightPressed == true) {
 
-            if (keyHandler.upPressed == true) {
+        if (keyH.upPressed == true || keyH.downPressed == true ||
+                keyH.leftPressed == true || keyH.rightPressed == true) {
+
+            if (keyH.upPressed == true) {
                 direction = "up";
                 y -= speed;
-            } else if (keyHandler.downPressed == true) {
+            } else if (keyH.downPressed == true) {
                 direction = "down";
                 y += speed;
-            } else if (keyHandler.leftPressed == true) {
+            } else if (keyH.leftPressed == true) {
                 direction = "left";
                 x -= speed;
-            } else if (keyHandler.rightPressed == true) {
+            } else if (keyH.rightPressed == true) {
                 direction = "right";
                 x += speed;
             }
 
             spriteCounter++;
-            if (spriteCounter > 7) {
+            // sprite speed
+            if (spriteCounter > 10) {
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
@@ -74,9 +76,9 @@ public class Player extends Entity {
         }
     }
 
-    public void draw(Graphics2D graphics2D) {
-//        graphics2D.setColor(Color.white);
-//        graphics2D.fillRect(x, y, gamePanel.tileSize, gamePanel.tileSize);
+    public void draw(Graphics2D g2) {
+//        g2.setColor(Color.white);
+//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
         BufferedImage image = null;
 
@@ -114,12 +116,6 @@ public class Player extends Entity {
                 }
         }
 
-        graphics2D.drawImage(image, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-
+        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
     }
-
-//    public void draw(Graphics2D graphics2D) {
-//        graphics2D.setColor(Color.white);
-//        graphics2D.fillRect(x, y, gamePanel.tileSize, gamePanel.tileSize);
-//    }
 }

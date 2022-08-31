@@ -1,7 +1,6 @@
 package tile;
 
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 
 public class Tile {
 
