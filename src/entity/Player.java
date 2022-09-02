@@ -150,7 +150,11 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     gp.ui.showMessage("Speed increased!");
                     break;
-
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playSE(4);
+                    break;
             }
         }
     }
