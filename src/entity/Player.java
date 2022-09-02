@@ -16,6 +16,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public int hasKey = 0;
+    int standCounter = 0;
 
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -116,6 +117,13 @@ public class Player extends Entity {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+        } else {
+            standCounter++;
+
+            if (standCounter == 20) { // 20 FPS TIME BUFFER
+                spriteNum = 1;
+                standCounter = 0;
             }
         }
     }
