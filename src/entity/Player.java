@@ -130,7 +130,6 @@ public class Player extends Entity {
 
     public void pickUpObject(int i) {
         if (i != 999) {
-//            gp.obj[i] = null;
 
             String objectName = gp.obj[i].name;
 
