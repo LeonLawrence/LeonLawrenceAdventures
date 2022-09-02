@@ -131,21 +131,24 @@ public class Player extends Entity {
                     gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
-                    System.out.println("Key: " + hasKey);
+                    gp.ui.showMessage("you got a key!");
                 break;
                 case "Door":
                     if (hasKey > 0) {
                         gp.playSE(3);
                         gp.obj[i] = null;
                         hasKey--;
+                        gp.ui.showMessage("You opened the door!");
+                    } else {
+                        gp.ui.showMessage("You need a key!");
                     }
-                    System.out.println("Key: " + hasKey);
                 break;
                 case "Boots":
                     gp.playSE(2);
                     //EDIT NUMBER BELOW TO INCREASE SPEED
                     speed += 2;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("Speed increased!");
                     break;
 
             }
