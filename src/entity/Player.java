@@ -132,7 +132,7 @@ public class Player extends Entity {
                     hasKey++;
                     gp.obj[i] = null;
                     gp.ui.showMessage("you got a key!");
-                break;
+                    break;
                 case "Door":
                     if (hasKey > 0) {
                         gp.playSE(3);
@@ -142,7 +142,7 @@ public class Player extends Entity {
                     } else {
                         gp.ui.showMessage("You need a key!");
                     }
-                break;
+                    break;
                 case "Boots":
                     gp.playSE(2);
                     //EDIT NUMBER BELOW TO INCREASE SPEED
@@ -201,5 +201,9 @@ public class Player extends Entity {
         }
 
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+        // UNCOMMENT BELOW TO DISPLAY PLAYER COLLISION BOUNDARY
+//        g2.setColor(Color.red);
+//        g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
     }
 }
