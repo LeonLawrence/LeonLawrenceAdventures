@@ -1,9 +1,11 @@
 package tile;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,33 +29,12 @@ public class TileManager {
     }
 
     public void getTileImage() {
-
-        try {
-
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/grass.png"));
-
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/wall.png"));
-            tile[1].collision = true;
-
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/water.png"));
-            tile[2].collision = true;
-
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/earth.png"));
-
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/tree.png"));
-            tile[4].collision = true;
-
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/sand.png"));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            setUp(0, "grass", false);
+            setUp(1, "wall", true);
+            setUp(2, "water", true);
+            setUp(3, "earth", false);
+            setUp(4, "tree", true);
+            setUp(5, "sand", false);
     }
 
     public void loadMap(String filePath) {
@@ -87,6 +68,22 @@ public class TileManager {
 
         } catch (Exception e) {
 
+        }
+    }
+
+    public void setUp(int index, String imageName, boolean collision) {
+
+        UtilityTool uTool = new UtilityTool();
+
+        try {
+
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/" + imageName + ".png"));
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
