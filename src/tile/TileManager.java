@@ -21,20 +21,91 @@ public class TileManager {
 
         this.gp = gp;
 
-        tile = new Tile[10];
+        tile = new Tile[50];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("/res/maps/world01.txt");
+        loadMap("/res/maps/worldV2.txt");
     }
 
     public void getTileImage() {
-            setUp(0, "grass", false);
-            setUp(1, "wall", true);
-            setUp(2, "water", true);
-            setUp(3, "earth", false);
-            setUp(4, "tree", true);
-            setUp(5, "sand", false);
+        //index 0 - 9 are placeholders
+        setUp(0, "cgrass", false);
+        setUp(1, "cgrass", false);
+        setUp(2, "cgrass", false);
+        setUp(3, "cgrass", false);
+        setUp(4, "cgrass", false);
+        setUp(5, "cgrass", false);
+        setUp(6, "cgrass", false);
+        setUp(7, "cgrass", false);
+        setUp(8, "cgrass", false);
+        setUp(9, "cgrass", false);
+
+        setUp(10, "cgrass", false);
+        setUp(11, "cgrass", false);
+
+        setUp(12, "water00", true);
+        setUp(13, "water01", true);
+        setUp(14, "water02", true);
+        setUp(15, "water03", true);
+        setUp(16, "water04", true);
+        setUp(17, "water05", true);
+        setUp(18, "water06", true);
+        setUp(19, "water07", true);
+        setUp(20, "water08", true);
+        setUp(21, "water09", true);
+        setUp(22, "water10", true);
+        setUp(23, "water11", true);
+        setUp(24, "water12", true);
+        setUp(25, "water13", true);
+
+        setUp(26, "csand", false);
+        setUp(27, "road01", false);
+        setUp(28, "road02", false);
+        setUp(29, "road03", false);
+        setUp(30, "road04", false);
+        setUp(31, "road05", false);
+        setUp(32, "road06", false);
+        setUp(33, "road07", false);
+        setUp(34, "road08", false);
+        setUp(35, "road09", false);
+        setUp(36, "road10", false);
+        setUp(37, "road11", false);
+        setUp(38, "road12", false);
+
+        setUp(39, "earth", false);
+        setUp(40, "wall", false);
+        setUp(41, "ctreetop", true);
+
+//        try {
+//            this.tile[0] = new Tile();
+//            this.tile[0].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/grass.jpg"));
+//
+//            this.tile[2] = new Tile();
+//            this.tile[2].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/water.jpg"));
+//
+//            this.tile[3] = new Tile();
+//            this.tile[3].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/earth.jpg"));
+//
+//            this.tile[6] = new Tile();
+//            this.tile[6].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/sand.jpg"));
+//
+//            this.tile[8] = new Tile();
+//            this.tile[8].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/treetop.jpg"));
+//
+//            this.tile[7] = new Tile();
+//            this.tile[7].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/treebottom.jpg"));
+//
+//            this.tile[9] = new Tile();
+//            this.tile[9].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/treetop.png"));
+//
+//            this.tile[10] = new Tile();
+//            this.tile[10].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/treebottom.png"));
+//
+//
+//        } catch (IOException var2) {
+//            var2.printStackTrace();
+//        }
     }
 
     public void loadMap(String filePath) {
