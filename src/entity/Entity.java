@@ -35,6 +35,8 @@ public class Entity {
 
         collisionOn = false;
         gp.cChecker.checkTile(this);
+        gp.cChecker.checkObject(this, false);
+        gp.cChecker.checkPlayer(this);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
         if (collisionOn == false) {
@@ -146,4 +148,6 @@ public class Entity {
         }
         return image;
     }
+
+
 }

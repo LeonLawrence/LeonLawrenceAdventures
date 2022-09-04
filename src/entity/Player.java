@@ -2,12 +2,9 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Player extends Entity {
 
@@ -86,6 +83,10 @@ public class Player extends Entity {
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
+            // CHECK NPC COLLISION
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
+
             // IF COLLISION IS FALSE, PLAYER CAN MOVE
             if (collisionOn == false) {
 
@@ -127,6 +128,13 @@ public class Player extends Entity {
 
     public void pickUpObject(int i) {
         if (i != 999) {
+        }
+    }
+
+    public void interactNPC(int i) {
+
+        if (i != 999) {
+            System.out.println("You are hitting an npc!");
         }
     }
 
