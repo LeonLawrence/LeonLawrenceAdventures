@@ -128,13 +128,16 @@ public class Player extends Entity {
 
     public void pickUpObject(int i) {
         if (i != 999) {
+//            System.out.println("You interacted with an object");
         }
     }
 
     public void interactNPC(int i) {
 
         if (i != 999) {
-            System.out.println("You are hitting an npc!");
+//            System.out.println("You are hitting an npc!");
+
+            gp.gameState = gp.dialogueState;
         }
     }
 

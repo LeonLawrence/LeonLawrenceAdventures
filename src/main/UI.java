@@ -17,6 +17,8 @@ public class UI {
     int messageCounter = 0;
     public boolean gameFinished = false;
 
+
+    // delete the two lines below?
     double playTime;
     DecimalFormat dFormat = new DecimalFormat("#0.00");
 
@@ -42,11 +44,17 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
 
+        // PLAY STATE
         if (gp.gameState == gp.playState) {
             // do playState stuff later
         }
+        // PAUSE STATE
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
+        }
+        // DIALOGUE STATE
+        if (gp.gameState == gp.dialogueState) {
+            drawDialogueScreen();
         }
 
 
@@ -114,7 +122,7 @@ public class UI {
 
     public void drawPauseScreen() {
 
-        g2.setFont(gp.getFont().deriveFont(Font.BOLD,80F));
+        g2.setFont(gp.getFont().deriveFont(Font.BOLD, 80F));
         String text = "PAUSED";
         int x;
         int length = (getXForCenteredText(text));
@@ -124,9 +132,26 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
+    public void drawDialogueScreen() {
+        // WINDOW
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 3;
+
+        drawSubWindow(x, y, width, height);
+    }
+
+    public void drawSubWindow(int x, int y, int width, int height) {
+
+        Color c = new Color(0,0,0);
+        g2.setColor(c);
+        g2.fillRoundRect(x,y,width,height,35,35);
+    }
+
     public int getXForCenteredText(String text) {
-        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth/2 - length/2;
+        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = gp.screenWidth / 2 - length / 2;
         return x;
     }
 }
