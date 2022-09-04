@@ -74,38 +74,9 @@ public class TileManager {
         setUp(38, "road12", false);
 
         setUp(39, "earth", false);
-        setUp(40, "wall", false);
+        setUp(40, "wall", true);
         setUp(41, "ctreetop", true);
 
-//        try {
-//            this.tile[0] = new Tile();
-//            this.tile[0].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/grass.jpg"));
-//
-//            this.tile[2] = new Tile();
-//            this.tile[2].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/water.jpg"));
-//
-//            this.tile[3] = new Tile();
-//            this.tile[3].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/earth.jpg"));
-//
-//            this.tile[6] = new Tile();
-//            this.tile[6].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/sand.jpg"));
-//
-//            this.tile[8] = new Tile();
-//            this.tile[8].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/treetop.jpg"));
-//
-//            this.tile[7] = new Tile();
-//            this.tile[7].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/treebottom.jpg"));
-//
-//            this.tile[9] = new Tile();
-//            this.tile[9].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/treetop.png"));
-//
-//            this.tile[10] = new Tile();
-//            this.tile[10].image = ImageIO.read(this.getClass().getResourceAsStream("/res/tiles/treebottom.png"));
-//
-//
-//        } catch (IOException var2) {
-//            var2.printStackTrace();
-//        }
     }
 
     public void loadMap(String filePath) {
