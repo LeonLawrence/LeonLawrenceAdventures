@@ -50,29 +50,15 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
 
-        up1 = setUp("boy_up_1");
-        up2 = setUp("boy_up_2");
-        down1 = setUp("boy_down_1");
-        down2 = setUp("boy_down_2");
-        left1 = setUp("boy_left_1");
-        left2 = setUp("boy_left_2");
-        right1 = setUp("boy_right_1");
-        right2 = setUp("boy_right_2");
+        up1 = setUp("/res/player/boy_up_1");
+        up2 = setUp("/res/player/boy_up_2");
+        down1 = setUp("/res/player/boy_down_1");
+        down2 = setUp("/res/player/boy_down_2");
+        left1 = setUp("/res/player/boy_left_1");
+        left2 = setUp("/res/player/boy_left_2");
+        right1 = setUp("/res/player/boy_right_1");
+        right2 = setUp("/res/player/boy_right_2");
 
-    }
-
-
-    public BufferedImage setUp(String imageName) {
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/res/player/" + imageName + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
     }
 
     public void update() {
@@ -141,45 +127,10 @@ public class Player extends Entity {
 
     public void pickUpObject(int i) {
         if (i != 999) {
-
-//            String objectName = gp.obj[i].name;
-//
-//            switch (objectName) {
-//                case "Key":
-//                    gp.playSE(1);
-//                    hasKey++;
-//                    gp.obj[i] = null;
-//                    gp.ui.showMessage("you got a key!");
-//                    break;
-//                case "Door":
-//                    if (hasKey > 0) {
-//                        gp.playSE(3);
-//                        gp.obj[i] = null;
-//                        hasKey--;
-//                        gp.ui.showMessage("You opened the door!");
-//                    } else {
-//                        gp.ui.showMessage("You need a key!");
-//                    }
-//                    break;
-//                case "Boots":
-//                    gp.playSE(2);
-//                    //EDIT NUMBER BELOW TO INCREASE SPEED
-//                    speed += 2;
-//                    gp.obj[i] = null;
-//                    gp.ui.showMessage("Speed increased!");
-//                    break;
-//                case "Chest":
-//                    gp.ui.gameFinished = true;
-//                    gp.stopMusic();
-//                    gp.playSE(4);
-//                    break;
-//            }
         }
     }
 
     public void draw(Graphics2D g2) {
-//        g2.setColor(Color.white);
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
         BufferedImage image = null;
 

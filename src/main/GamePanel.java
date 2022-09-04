@@ -1,5 +1,6 @@
 package main;
 
+import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -43,6 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
     // OBJECT SETTINGS - Too Many Objects Can Slow Down The Game.
     // OBJECT STORAGE SETTINGS. CAN DISPLAY UP TO 10 OBJECTS AT THE SAME TIME
     public SuperObject obj[] = new SuperObject[10];
+    public Entity npc[] = new Entity[10];
 
     // GAME STATE
     public int gameState;
@@ -61,12 +63,12 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
 
         aSetter.setObject();
+        aSetter.setNPC();
 
         playMusic(0);
 //        stopMusic();
 
         gameState = playState;
-
 
     }
 
@@ -74,36 +76,6 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
     }
-
-//    @Override
-//    public void run() {
-//
-//        double drawInterval = 1000000000 / FPS; // 0.01666 seconds
-//        double nextDrawTime = System.nanoTime() + drawInterval;
-//
-//        while (gameThread != null) {
-//
-//            update();
-//
-//            repaint();
-//
-//            try {
-//                double remainingTime = nextDrawTime - System.nanoTime();
-//                remainingTime = remainingTime/1000000;
-//
-//                if (remainingTime < 0) {
-//                    remainingTime = 0;
-//                }
-//
-//                Thread.sleep((long) remainingTime);
-//
-//                nextDrawTime += drawInterval;
-//
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
     @Override
     public void run() {
@@ -170,6 +142,14 @@ public class GamePanel extends JPanel implements Runnable {
                 obj[i].draw(g2, this);
             }
         }
+
+        // NPC
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i] != null) {
+                npc[i].draw(g2);
+            }
+        }
+
 
         // PLAYER
         player.draw(g2);
