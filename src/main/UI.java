@@ -16,6 +16,7 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
+    public String currentDialogue = "";
 
 
     // delete the two lines below?
@@ -32,7 +33,6 @@ public class UI {
     }
 
     public void showMessage(String text) {
-
         message = text;
         messageOn = true;
     }
@@ -138,15 +138,30 @@ public class UI {
         int y = gp.tileSize / 2;
         int width = gp.screenWidth - (gp.tileSize * 4);
         int height = gp.tileSize * 3;
-
         drawSubWindow(x, y, width, height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32));
+        x += gp.tileSize;
+        y += gp.tileSize;
+
+        for (String line : currentDialogue.split("\n")) {
+            g2.drawString(line, x, y);
+            y += 40;
+        }
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
-
-        Color c = new Color(0,0,0);
+//220 is the transparency level. 210 makes a difference and is the new T level (Can Change alpha to alter transparency).
+        Color c = new Color(0, 0, 0, 210);
         g2.setColor(c);
-        g2.fillRoundRect(x,y,width,height,35,35);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        // RGB Number For White
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(gp.tileSize * 2, gp.tileSize / 2, gp.screenWidth - (gp.tileSize * 4), gp.tileSize * 3, 25, 25);
+//        g2.drawRoundRect(x + 5, x + 5, width - 10, height - 10, 25, 25);
     }
 
     public int getXForCenteredText(String text) {

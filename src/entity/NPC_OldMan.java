@@ -13,6 +13,7 @@ public class NPC_OldMan extends Entity {
         speed = 1;
 
         getImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -26,6 +27,14 @@ public class NPC_OldMan extends Entity {
         right1 = setUp("/res/npc/oldman_right_1");
         right2 = setUp("/res/npc/oldman_right_2");
 
+    }
+
+    public void setDialogue() {
+        dialogues[0] = "Hello, sir.";
+        dialogues[1] = "I'm Tony Le, the wizard.";
+        dialogues[2] = "I see that you have no powers. \nCome back to me when you've found the master Sword";
+        dialogues[3] = "Fight Monsters and Level up to become stronger.";
+        dialogues[4] = "Good luck on your adventure!";
     }
 
     //Very simple AI?
@@ -54,5 +63,10 @@ public class NPC_OldMan extends Entity {
 
             actionLockCounter = 0;
         }
+    }
+
+    public void speak() {
+
+        super.speak();
     }
 }
