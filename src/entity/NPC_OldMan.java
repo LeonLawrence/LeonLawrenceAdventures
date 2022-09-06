@@ -67,6 +67,8 @@ public class NPC_OldMan extends Entity {
 
     public void speak() {
 
+        // Do this character specific stuff
+
         super.speak();
     }
 }
