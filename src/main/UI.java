@@ -9,13 +9,14 @@ public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-//    Font arial_40, arial_80B;
+    Font arial_40, arial_80B;
     Font maruMonica, purisaB;
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
     public String currentDialogue = "";
+    public int commandNum = 0;
 
 
     // delete the two lines below?
@@ -26,7 +27,7 @@ public class UI {
         this.gp = gp;
 
         try {
-        InputStream is = getClass().getResourceAsStream("/res/font/MaruMonica.ttf");
+            InputStream is = getClass().getResourceAsStream("/res/font/MaruMonica.ttf");
             maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
             is = getClass().getResourceAsStream("/res/font/PurisaBold.ttf");
             purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
@@ -53,12 +54,17 @@ public class UI {
         this.g2 = g2;
 
 //        g2.setFont(arial_40);
-//        g2.setFont(maruMonica);
-        g2.setFont(purisaB);
+        g2.setFont(maruMonica);
+//        g2.setFont(purisaB);
 
         // BELOW LINE FOR RENDERING IMPROVEMENTS
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.white);
+
+        // TITLE STATE
+        if (gp.gameState == gp.titleState) {
+            drawTitleScreen();
+        }
 
         // PLAY STATE
         if (gp.gameState == gp.playState) {
@@ -72,7 +78,66 @@ public class UI {
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
+    }
 
+    public void drawTitleScreen() {
+
+        g2.setColor(new Color(0, 0, 0));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        // TITLE NAME
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
+        String text = "D E V E L O P M E N T    M O D E";
+        int x = getXForCenteredText(text);
+        int y = gp.tileSize * 3;
+
+        // SHADOW
+        g2.setColor(Color.gray);
+        g2.drawString(text, x + 5, y + 5);
+
+        // MAIN COLOUR
+        g2.setColor(Color.white);
+        g2.drawString(text, x, y);
+
+        // PLAYER IMAGE
+        x = gp.screenWidth / 2 - (gp.tileSize*2) / 2; // center point
+        y += gp.tileSize * 2;
+
+//        g2.drawImage(gp.player.down1, x, y, 200, 200, null);
+        g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+
+        // MENU
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
+
+        text = "NEW GAME";
+        x = getXForCenteredText(text);
+        y += gp.tileSize * 3.5;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "LOAD GAME";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "QUIT";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+//        g2.setFont(g2.getFont().deriveFont(Font.BOLD,36F));
+//        String text2 = "Created by Leon";
+//        int x2 = getXForCenteredText(text2);
+//        int y2 = gp.tileSize * 8;
+//        g2.drawString(text2, x2, y2);
     }
 
     public void drawPauseScreen() {
