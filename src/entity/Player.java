@@ -140,6 +140,15 @@ public class Player extends Entity {
                 standCounter = 0;
             }
         }
+
+        // This needs to be outside the key if statement!
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 
     public void pickUpObject(int i) {
@@ -163,7 +172,10 @@ public class Player extends Entity {
 
     public void contactMonster(int i) {
         if (i != 999) {
+            if (invincible == false) {
             life -= 1;
+            invincible = true;
+            }
         }
     }
 
@@ -206,10 +218,26 @@ public class Player extends Entity {
                 break;
         }
 
+        if (invincible == true) {
+            //Player hit transparency
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
         g2.drawImage(image, screenX, screenY, null);
 
+        // RESET ALPHA
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
+        // DEBUG
         // UNCOMMENT BELOW TO DISPLAY PLAYER COLLISION BOUNDARY
 //        g2.setColor(Color.red);
 //        g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
+
+
+
+        // DEBUG
+        // UNCOMMENT BELOW TO SEE INVINCIBLE COUNTER
+//        g2.setFont(new Font("Arial", Font.PLAIN, 26));
+//        g2.setColor(Color.white);
+//        g2.drawString("Invincible: " + invincibleCounter, 10, 400);
     }
 }
