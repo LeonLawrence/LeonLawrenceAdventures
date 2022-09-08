@@ -18,23 +18,22 @@ public class NPC_OldMan extends Entity {
 
     public void getImage() {
 
-        up1 = setUp("/res/npc/oldman_up_1");
-        up2 = setUp("/res/npc/oldman_up_2");
-        down1 = setUp("/res/npc/oldman_down_1");
-        down2 = setUp("/res/npc/oldman_down_2");
-        left1 = setUp("/res/npc/oldman_left_1");
-        left2 = setUp("/res/npc/oldman_left_2");
-        right1 = setUp("/res/npc/oldman_right_1");
-        right2 = setUp("/res/npc/oldman_right_2");
+        up1 = setup("/res/npc/oldman_up_1");
+        up2 = setup("/res/npc/oldman_up_2");
+        down1 = setup("/res/npc/oldman_down_1");
+        down2 = setup("/res/npc/oldman_down_2");
+        left1 = setup("/res/npc/oldman_left_1");
+        left2 = setup("/res/npc/oldman_left_2");
+        right1 = setup("/res/npc/oldman_right_1");
+        right2 = setup("/res/npc/oldman_right_2");
 
     }
 
     public void setDialogue() {
         dialogues[0] = "Hello, sir.";
         dialogues[1] = "I'm Tony Le, the wizard.";
-        dialogues[2] = "I see that you have no powers. \nCome back to me when you've found the master Sword";
-        dialogues[3] = "Fight Monsters and Level up to become stronger.";
-        dialogues[4] = "Good luck on your adventure!";
+        dialogues[2] = "Fight Monsters and Level up to become stronger.";
+        dialogues[3] = "Good luck on your adventure!";
     }
 
     //Very simple AI?

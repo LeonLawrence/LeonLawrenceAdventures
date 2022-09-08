@@ -39,8 +39,11 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
+        // PLAYER STARTING POSITION
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
+//        worldX = gp.tileSize * 10;
+//        worldY = gp.tileSize * 13;
         speed = 4;
         direction = "down";
 
@@ -51,14 +54,14 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
 
-        up1 = setUp("/res/player/boy_up_1");
-        up2 = setUp("/res/player/boy_up_2");
-        down1 = setUp("/res/player/boy_down_1");
-        down2 = setUp("/res/player/boy_down_2");
-        left1 = setUp("/res/player/boy_left_1");
-        left2 = setUp("/res/player/boy_left_2");
-        right1 = setUp("/res/player/boy_right_1");
-        right2 = setUp("/res/player/boy_right_2");
+        up1 = setup("/res/player/boy_up_1");
+        up2 = setup("/res/player/boy_up_2");
+        down1 = setup("/res/player/boy_down_1");
+        down2 = setup("/res/player/boy_down_2");
+        left1 = setup("/res/player/boy_left_1");
+        left2 = setup("/res/player/boy_left_2");
+        right1 = setup("/res/player/boy_right_1");
+        right2 = setup("/res/player/boy_right_2");
 
     }
 
@@ -90,6 +93,10 @@ public class Player extends Entity {
             // CHECK NPC COLLISION
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
+
+            // CHECK MONSTER COLLISION
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
 
             // CHECK EVENT
             gp.eHandler.checkEvent();
@@ -151,6 +158,12 @@ public class Player extends Entity {
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
             }
+        }
+    }
+
+    public void contactMonster(int i) {
+        if (i != 999) {
+            life -= 1;
         }
     }
 

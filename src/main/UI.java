@@ -81,6 +81,7 @@ public class UI {
         // PLAY STATE
         if (gp.gameState == gp.playState) {
             drawPlayerLife();
+            gp.stopMusic();
         }
         // PAUSE STATE
         if (gp.gameState == gp.pauseState) {

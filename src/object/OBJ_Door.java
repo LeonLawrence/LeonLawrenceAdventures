@@ -3,16 +3,13 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-
 public class OBJ_Door extends Entity {
 
     public OBJ_Door(GamePanel gp) {
         super(gp);
 
         name = "Door";
-        down1 = setUp("/res/objects/door");
+        down1 = setup("/res/objects/door");
         collision = true;
 
         solidArea.x = 0;

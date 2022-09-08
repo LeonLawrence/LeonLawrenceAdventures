@@ -71,6 +71,8 @@ public class Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkEntity(this, gp.monster);
         gp.cChecker.checkPlayer(this);
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
@@ -159,19 +161,19 @@ public class Entity {
 
     public void getPlayerImage() {
 
-        up1 = setUp("boy_up_1");
-        up2 = setUp("boy_up_2");
-        down1 = setUp("boy_down_1");
-        down2 = setUp("boy_down_2");
-        left1 = setUp("boy_left_1");
-        left2 = setUp("boy_left_2");
-        right1 = setUp("boy_right_1");
-        right2 = setUp("boy_right_2");
+        up1 = setup("boy_up_1");
+        up2 = setup("boy_up_2");
+        down1 = setup("boy_down_1");
+        down2 = setup("boy_down_2");
+        left1 = setup("boy_left_1");
+        left2 = setup("boy_left_2");
+        right1 = setup("boy_right_1");
+        right2 = setup("boy_right_2");
 
     }
 
 
-    public BufferedImage setUp(String imagePath) {
+    public BufferedImage setup(String imagePath) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 

@@ -3,9 +3,6 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-
 public class OBJ_Chest extends Entity {
 
     public OBJ_Chest(GamePanel gp) {
@@ -13,6 +10,6 @@ public class OBJ_Chest extends Entity {
 
         name = "Chest";
 
-        down1 = setUp("/res/objects/chest");
+        down1 = setup("/res/objects/chest");
     }
 }
