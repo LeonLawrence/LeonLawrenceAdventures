@@ -10,6 +10,6 @@ public class OBJ_Chest extends Entity {
 
         name = "Chest";
 
-        down1 = setup("/res/objects/chest");
+        down1 = setup("/res/objects/chest", gp.tileSize, gp.tileSize);
     }
 }
