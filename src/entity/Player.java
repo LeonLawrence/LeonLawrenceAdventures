@@ -269,6 +269,7 @@ public class Player extends Entity {
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
             }
+
         }
     }
 
