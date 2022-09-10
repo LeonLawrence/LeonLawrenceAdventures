@@ -15,7 +15,8 @@ GamePanel gp;
         type = 2;
         name = "Green Slime";
         speed = 1;
-        maxLife = 4;
+        // MONSTER LIFE
+        maxLife = 20;
         life = maxLife;
 
         solidArea.x = 3;
