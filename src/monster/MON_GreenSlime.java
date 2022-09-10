@@ -16,7 +16,7 @@ GamePanel gp;
         name = "Green Slime";
         speed = 1;
         // MONSTER LIFE
-        maxLife = 20;
+        maxLife = 10;
         life = maxLife;
 
         solidArea.x = 3;
@@ -68,5 +68,11 @@ GamePanel gp;
 
             actionLockCounter = 0;
         }
+    }
+
+    public void damageReaction() {
+        actionLockCounter = 0;
+        direction = gp.player.direction;
+
     }
 }
