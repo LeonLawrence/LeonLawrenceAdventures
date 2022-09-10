@@ -75,7 +75,8 @@ public class TileManager {
 
         setUp(39, "earth", false);
         setUp(40, "wall", true);
-        setUp(41, "ctreetop", true);
+        setUp(41, "treetop", true);
+        setUp(42, "treebottom", true);
 
     }
 
