@@ -28,11 +28,14 @@ public class Entity {
     public boolean collisionOn = false;
     public boolean invincible = false;
     boolean attacking = false;
+    public boolean alive = true;
+    public boolean dying = false;
 
     // COUNTER
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int invincibleCounter = 0;
+    int dyingCounter = 0;
 
     // CHARACTER ATTRIBUTES
     public int type; // 0 = player, 1 = npc, 2 = monster
@@ -179,6 +182,9 @@ public class Entity {
                 //Player hit transparency
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
             }
+            if (dying == true) {
+                dyingAnimation(g2);
+            }
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
@@ -187,19 +193,46 @@ public class Entity {
         }
     }
 
-    public void getPlayerImage() {
+    public void dyingAnimation(Graphics2D g2) {
+        dyingCounter++;
+// CHANGE INTERVAL FOR DYING ANIMATION
+        int i = 5;
 
-        up1 = setup("boy_up_1", gp.tileSize, gp.tileSize);
-        up2 = setup("boy_up_2", gp.tileSize, gp.tileSize);
-        down1 = setup("boy_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("boy_down_2", gp.tileSize, gp.tileSize);
-        left1 = setup("boy_left_1", gp.tileSize, gp.tileSize);
-        left2 = setup("boy_left_2", gp.tileSize, gp.tileSize);
-        right1 = setup("boy_right_1", gp.tileSize, gp.tileSize);
-        right2 = setup("boy_right_2", gp.tileSize, gp.tileSize);
 
+        if (dyingCounter <= i) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i && dyingCounter <= i*2) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i*2 && dyingCounter <= i*3) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i*3 && dyingCounter <= i*4) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i*4 && dyingCounter <= i*5) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i*5 && dyingCounter <= i*6) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i*6 && dyingCounter <= i*7) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i*7 && dyingCounter <= i*8) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i*8) {
+            dying = false;
+            alive = false;
+        }
     }
 
+    public void changeAlpha(Graphics2D g2, float alphaValue) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
+
+    }
 
     public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool uTool = new UtilityTool();
