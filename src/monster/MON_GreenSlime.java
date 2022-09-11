@@ -20,6 +20,7 @@ GamePanel gp;
         life = maxLife;
         attack = 5;
         defense = 0;
+        exp = 2;
 
 
         solidArea.x = 3;
