@@ -12,7 +12,7 @@ GamePanel gp;
         super(gp);
         this.gp = gp;
 
-        type = 2;
+        type = type_monster;
         name = "Green Slime";
         speed = 1;
         // MONSTER LIFE
