@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
@@ -74,6 +75,7 @@ public class Player extends Entity {
         coin = 0;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
+        projectile = new OBJ_Fireball(gp);
         attack = getAttack(); // The total attack value is decided by strength and weapon
         defense = getDefense(); // The total defense value is decided by dexterity and shield
     }
@@ -82,8 +84,6 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
-
-
 
 
     }
@@ -223,6 +223,20 @@ public class Player extends Entity {
                 standCounter = 0;
             }
         }
+// only can shoot one projectile at a time
+        if (gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30) {
+
+            // SET DEFAULT COORDINATES< DIRECTION AND USER
+            projectile.set(worldX, worldY, direction, true, this);
+
+            // ADD IT TO THE LIST
+            gp.projectileList.add(projectile);
+
+            shotAvailableCounter = 0;
+
+            gp.playSE(10);
+
+        }
 
         // This needs to be outside the key if statement!
         if (invincible == true) {
@@ -231,6 +245,9 @@ public class Player extends Entity {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if (shotAvailableCounter < 30) {
+            shotAvailableCounter++;
         }
     }
 
@@ -272,7 +289,7 @@ public class Player extends Entity {
 
             // Check monster collision with the updated worldX, worldY and solidArea
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
 
             // After checking collision, restore the original data
             worldX = currentWorldX;
@@ -320,7 +337,7 @@ public class Player extends Entity {
 
     public void contactMonster(int i) {
         if (i != 999) {
-            if (invincible == false) {
+            if (invincible == false && gp.monster[i].dying == false) {
                 gp.playSE(6);
 
                 int damage = attack - gp.monster[i].attack - defense;
@@ -333,7 +350,7 @@ public class Player extends Entity {
         }
     }
 
-    public void damageMonster(int i) {
+    public void damageMonster(int i, int attack) {
         if (i != 999) {
 
             if (gp.monster[i].invincible == false) {
@@ -379,7 +396,8 @@ public class Player extends Entity {
 
         }
     }
-public void selectItem() {
+
+    public void selectItem() {
         int itemIndex = gp.ui.getItemIndexOnSlot();
 
         if (itemIndex < inventory.size()) {
@@ -400,7 +418,7 @@ public void selectItem() {
                 inventory.remove(itemIndex);
             }
         }
-}
+    }
 
 
     public void draw(Graphics2D g2) {
@@ -506,6 +524,7 @@ public void selectItem() {
 //        g2.setFont(new Font("Arial", Font.PLAIN, 26));
 //        g2.setColor(Color.white);
 //        g2.drawString("Invincible: " + invincibleCounter, 10, 400);
+
 
         // Show the attackArea on the screen, type the following code in player's draw method:
         // DEBUG

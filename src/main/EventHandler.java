@@ -83,7 +83,7 @@ public class EventHandler {
 //            damagePit(27,16, gp.dialogueState);
 //        }
 
-        if (hit(27, 18, "up") == true) {
+        if (hit(35, 52, "up") == true) {
             // event happens
             teleport(gp.dialogueState);
         }
@@ -123,8 +123,8 @@ public class EventHandler {
     public void teleport(int gameState) {
         gp.gameState = gameState;
         gp.ui.currentDialogue = "Teleport!";
-        gp.player.worldX = gp.tileSize * 37;
-        gp.player.worldY = gp.tileSize * 10;
+        gp.player.worldX = gp.tileSize * 10;
+        gp.player.worldY = gp.tileSize * 8;
     }
 
     public void damagePit(int col, int row, int gameState) {
