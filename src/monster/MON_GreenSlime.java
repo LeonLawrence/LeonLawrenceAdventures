@@ -18,6 +18,9 @@ GamePanel gp;
         // MONSTER LIFE
         maxLife = 10;
         life = maxLife;
+        attack = 5;
+        defense = 0;
+
 
         solidArea.x = 3;
         solidArea.y = 18;
