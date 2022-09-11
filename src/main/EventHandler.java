@@ -44,7 +44,7 @@ public class EventHandler {
         // Check if the player character is more than 1 tile away from the last event
         int xDistance = Math.abs(gp.player.worldX - previousEventX);
         int yDistance = Math.abs(gp.player.worldY - previousEventY);
-        int distance = Math.max(xDistance,yDistance);
+        int distance = Math.max(xDistance, yDistance);
         if (distance > gp.tileSize) {
             canTouchEvent = true;
         }
@@ -52,15 +52,29 @@ public class EventHandler {
         if (canTouchEvent == true) {
             if (hit(27, 16, "right") == true) {
                 // event happens
-                damagePit(27,16, gp.dialogueState);
+                damagePit(27, 16, gp.dialogueState);
             }
-            if (hit(23,19, "any") == true) {
+            if (hit(23, 19, "any") == true) {
                 // event happens
-                damagePit(23,19, gp.dialogueState);
+                damagePit(23, 19, gp.dialogueState);
             }
-            if (hit(23, 12, "up") == true) {
-                healingPool(23,12, gp.dialogueState);
-
+            if (hit(42, 4, "up") == true) {
+                healingPool(42, 4, gp.dialogueState);
+            }
+            if (hit(43, 4, "up") == true) {
+                healingPool(43, 4, gp.dialogueState);
+            }
+            if (hit(44, 4, "up") == true) {
+                healingPool(44, 4, gp.dialogueState);
+            }
+            if (hit(49, 4, "up") == true) {
+                healingPool(42, 4, gp.dialogueState);
+            }
+            if (hit(49, 4, "up") == true) {
+                healingPool(49, 4, gp.dialogueState);
+            }
+            if (hit(50, 4, "up") == true) {
+                healingPool(50, 4, gp.dialogueState);
             }
         }
 
@@ -109,8 +123,8 @@ public class EventHandler {
     public void teleport(int gameState) {
         gp.gameState = gameState;
         gp.ui.currentDialogue = "Teleport!";
-        gp.player.worldX = gp.tileSize*37;
-        gp.player.worldY = gp.tileSize*10;
+        gp.player.worldX = gp.tileSize * 37;
+        gp.player.worldY = gp.tileSize * 10;
     }
 
     public void damagePit(int col, int row, int gameState) {

@@ -55,11 +55,11 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         // PLAYER STARTING POSITION CAN BE EDITED
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 40;
+        worldY = gp.tileSize * 94;
 //        worldX = gp.tileSize * 10;
 //        worldY = gp.tileSize * 13;
-        speed = 4; // SPEED CAN BE EDITTED
+        speed = 6; // SPEED CAN BE EDITTED
         direction = "down";
 
         // PLAYER STATUS
