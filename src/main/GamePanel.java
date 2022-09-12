@@ -46,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     // OBJECT SETTINGS - Too Many Objects Can Slow Down The Game.
     // OBJECT STORAGE SETTINGS. CAN DISPLAY UP TO 10 OBJECTS AT THE SAME TIME
-    public Entity obj[] = new Entity[10];
+    public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[10];
     // number of monsters you can display at the same time
     public Entity monster[] = new Entity[20];
@@ -139,6 +139,7 @@ public class GamePanel extends JPanel implements Runnable {
                         monster[i].update();
                     }
                     if (monster[i].alive == false) {
+                        monster[i].checkDrop();
                         monster[i] = null;
                     }
                 }
