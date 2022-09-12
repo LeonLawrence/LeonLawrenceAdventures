@@ -46,6 +46,7 @@ public class Entity {
     public int maxLife;
     public int life;
     public int maxMana;
+    public int ammo;
     public int mana;
     public int level;
     public int strength;
@@ -81,6 +82,7 @@ public class Entity {
     }
 
     public void setAction() {
+
     }
 
     public void damageReaction() {
@@ -123,17 +125,7 @@ public class Entity {
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
         if (this.type == type_monster && contactPlayer == true) {
-            if (gp.player.invincible == false) {
-                gp.playSE(6);
-
-                int damage = attack - gp.player.defense;
-                if (damage < 0) {
-                    gp.player.life = 0;
-                }
-                // we can give damage
-                gp.player.life -= damage;
-                gp.player.invincible = true;
-            }
+            damagePlayer(attack);
         }
 
         // IF COLLISION IS FALSE, PLAYER CAN MOVE
@@ -172,6 +164,23 @@ public class Entity {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if (shotAvailableCounter < 30) {
+            shotAvailableCounter++;
+        }
+    }
+
+    public void damagePlayer(int attack) {
+        if (gp.player.invincible == false) {
+            gp.playSE(6);
+
+            int damage = attack - gp.player.defense;
+            if (damage < 0) {
+                gp.player.life = 0;
+            }
+            // we can give damage
+            gp.player.life -= damage;
+            gp.player.invincible = true;
         }
     }
 
@@ -231,7 +240,7 @@ public class Entity {
                 g2.setColor(new Color(35, 35, 35));
                 g2.fillRect(screenX - 1, screenY - 16, gp.tileSize + 2, 12);
                 g2.setColor(new Color(255, 0, 30));
-                g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
+                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
 
                 hpBarCounter++;
 
@@ -247,7 +256,7 @@ public class Entity {
                 hpBarOn = true;
                 hpBarCounter = 0;
                 //Player hit transparency
-                changeAlpha(g2,0.4F);
+                changeAlpha(g2, 0.4F);
 //                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
             }
             if (dying == true) {
@@ -257,7 +266,7 @@ public class Entity {
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
             // RESET ALPHA
-                changeAlpha(g2,1F);
+            changeAlpha(g2, 1F);
 //            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }
