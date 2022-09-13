@@ -68,6 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int dialogueState = 3;
     public final int characterState = 4;
     public final int optionsState = 5;
+    public final int gameOverState = 6;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -90,6 +91,26 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = titleState;
 
     }
+
+    public void retry() {
+        player.setDefaultPositions();
+        player.restoreLifeAndMana();
+        aSetter.setNPC();
+        aSetter.setMonster();
+    }
+
+    public void restart() {
+        player.setDefaultValues();
+        player.setDefaultPositions(); // not necessary
+        player.restoreLifeAndMana(); // not necessary
+        player.setItems();
+
+        aSetter.setObject();
+        aSetter.setNPC();
+        aSetter.setMonster();
+        aSetter.setInteractiveTile();
+    }
+
 
     public void startGameThread() {
         gameThread = new Thread(this);
@@ -207,7 +228,7 @@ public class GamePanel extends JPanel implements Runnable {
             tileM.draw(g2);
 
             // INTERACTIVE TILE
-            for (int i = 0; i < iTile.length; i++)    {
+            for (int i = 0; i < iTile.length; i++) {
                 if (iTile[i] != null) {
                     iTile[i].draw(g2);
                 }
@@ -271,7 +292,7 @@ public class GamePanel extends JPanel implements Runnable {
             long drawEnd = System.nanoTime();
             long passed = drawEnd - drawStart;
 
-            g2.setFont(new Font("Arial", Font.PLAIN,20));
+            g2.setFont(new Font("Arial", Font.PLAIN, 20));
             g2.setColor(Color.white);
 
             int x = 10;
@@ -282,9 +303,9 @@ public class GamePanel extends JPanel implements Runnable {
             y += lineHeight;
             g2.drawString("WorldY" + player.worldY, x, y);
             y += lineHeight;
-            g2.drawString("Col" + (player.worldX + player.solidArea.x)/tileSize, x, y);
+            g2.drawString("Col" + (player.worldX + player.solidArea.x) / tileSize, x, y);
             y += lineHeight;
-            g2.drawString("Row" + (player.worldY + player.solidArea.y)/tileSize, x, y);
+            g2.drawString("Row" + (player.worldY + player.solidArea.y) / tileSize, x, y);
             y += lineHeight;
 
             g2.drawString("Draw Time: " + passed, 10, 750);
