@@ -78,6 +78,8 @@ public class TileManager {
         setUp(41, "treetop", true);
         setUp(42, "treebottom", true);
 
+
+
     }
 
     public void loadMap(String filePath) {
