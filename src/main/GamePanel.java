@@ -29,6 +29,9 @@ public class GamePanel extends JPanel implements Runnable {
 //    public final int worldWidth = tileSize * maxScreenCol;
 //    public final int worldHeight = tileSize * maxScreenRow;
 
+    // FULL SCREEN - NOT IMPLEMENTED
+    public boolean fullScreen = false;
+
     //FPS SETTINGS
     int FPS = 60;
 
@@ -64,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int characterState = 4;
+    public final int optionsState = 5;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -80,8 +84,8 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setMonster();
         aSetter.setInteractiveTile();
 
-        playMusic(0);
-        stopMusic();
+//        playMusic(0);
+//        stopMusic();
 //        gameState = playState;
         gameState = titleState;
 
