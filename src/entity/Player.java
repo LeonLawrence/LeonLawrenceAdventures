@@ -51,11 +51,11 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         // PLAYER STARTING POSITION CAN BE EDITED
-        worldX = gp.tileSize * 40;
-        worldY = gp.tileSize * 94;
+        worldX = gp.tileSize * 47;
+        worldY = gp.tileSize * 93;
 //        worldX = gp.tileSize * 10;
 //        worldY = gp.tileSize * 13;
-        speed = 4; // SPEED CAN BE EDITED
+        speed = 3; // SPEED CAN BE EDITED
         direction = "down";
 
         // PLAYER STATUS
@@ -79,9 +79,10 @@ public class Player extends Entity {
     }
 
     public void setDefaultPositions() {
-        worldX = gp.tileSize * 40;
-        worldY = gp.tileSize * 94;
+        worldX = gp.tileSize * 47;
+        worldY = gp.tileSize * 93;
         direction = "down";
+//        speed = 4;
     }
 
     public void restoreLifeAndMana() {
@@ -112,14 +113,18 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
 
-        up1 = setup("/res/player/boy_up_1", gp.tileSize, gp.tileSize);
-        up2 = setup("/res/player/boy_up_2", gp.tileSize, gp.tileSize);
-        down1 = setup("/res/player/boy_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("/res/player/boy_down_2", gp.tileSize, gp.tileSize);
-        left1 = setup("/res/player/boy_left_1", gp.tileSize, gp.tileSize);
-        left2 = setup("/res/player/boy_left_2", gp.tileSize, gp.tileSize);
-        right1 = setup("/res/player/boy_right_1", gp.tileSize, gp.tileSize);
-        right2 = setup("/res/player/boy_right_2", gp.tileSize, gp.tileSize);
+        up1 = setup("/res/player/walk_back_01", gp.tileSize, gp.tileSize);
+        up2 = setup("/res/player/walk_back_02", gp.tileSize, gp.tileSize);
+        up3 = setup("/res/player/walk_back_03", gp.tileSize, gp.tileSize);
+        down1 = setup("/res/player/walk_front_01", gp.tileSize, gp.tileSize);
+        down2 = setup("/res/player/walk_front_02", gp.tileSize, gp.tileSize);
+        down3 = setup("/res/player/walk_front_03", gp.tileSize, gp.tileSize);
+        left1 = setup("/res/player/walk_left_01", gp.tileSize, gp.tileSize);
+        left2 = setup("/res/player/walk_left_02", gp.tileSize, gp.tileSize);
+        left3 = setup("/res/player/walk_left_03", gp.tileSize, gp.tileSize);
+        right1 = setup("/res/player/walk_right_01", gp.tileSize, gp.tileSize);
+        right2 = setup("/res/player/walk_right_02", gp.tileSize, gp.tileSize);
+        right3 = setup("/res/player/walk_right_03", gp.tileSize, gp.tileSize);
     }
 
     public void getPlayerAttackImage() {

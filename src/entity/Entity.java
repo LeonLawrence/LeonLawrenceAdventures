@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Entity {
 
     GamePanel gp;
-    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage up1, up2, up3, down1, down2,down3, left1, left2,left3, right1, right2,right3;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public BufferedImage image, image2, image3;
     public Rectangle solidArea = new Rectangle(8, 16, 32, 32); // orig 0,0,48,48
@@ -263,6 +263,9 @@ public class Entity {
                     if (spriteNum == 2) {
                         image = up2;
                     }
+                    if (spriteNum == 3) {
+                        image = up3;
+                    }
                     break;
                 case "down":
                     if (spriteNum == 1) {
@@ -270,6 +273,9 @@ public class Entity {
                     }
                     if (spriteNum == 2) {
                         image = down2;
+                    }
+                    if (spriteNum == 3) {
+                        image = down3;
                     }
                     break;
                 case "left":
@@ -279,6 +285,9 @@ public class Entity {
                     if (spriteNum == 2) {
                         image = left2;
                     }
+                    if (spriteNum == 3) {
+                        image = left3;
+                    }
                     break;
                 case "right":
                     if (spriteNum == 1) {
@@ -286,6 +295,9 @@ public class Entity {
                     }
                     if (spriteNum == 2) {
                         image = right2;
+                    }
+                    if (spriteNum == 3) {
+                        image = right3;
                     }
                     break;
             }

@@ -1,5 +1,6 @@
 package main;
 
+import entity.Entity;
 import jdk.jfr.Event;
 
 import java.awt.*;
@@ -54,28 +55,31 @@ public class EventHandler {
                 // event happens
                 damagePit(27, 16, gp.dialogueState);
             }
-            if (hit(23, 19, "any") == true) {
+            else if (hit(23, 19, "any") == true) {
                 // event happens
                 damagePit(23, 19, gp.dialogueState);
             }
-            if (hit(42, 4, "up") == true) {
+            else if (hit(42, 4, "up") == true) {
                 healingPool(42, 4, gp.dialogueState);
             }
-            if (hit(43, 4, "up") == true) {
+            else if (hit(43, 4, "up") == true) {
                 healingPool(43, 4, gp.dialogueState);
             }
-            if (hit(44, 4, "up") == true) {
+            else if (hit(44, 4, "up") == true) {
                 healingPool(44, 4, gp.dialogueState);
             }
-            if (hit(49, 4, "up") == true) {
+            else if (hit(49, 4, "up") == true) {
                 healingPool(42, 4, gp.dialogueState);
             }
-            if (hit(49, 4, "up") == true) {
+            else if (hit(49, 4, "up") == true) {
                 healingPool(49, 4, gp.dialogueState);
             }
-            if (hit(50, 4, "up") == true) {
+            else if (hit(50, 4, "up") == true) {
                 healingPool(50, 4, gp.dialogueState);
             }
+//            else if (hit(41, 94, "up") == true) {
+//                speak(gp.npc[1][0]); NOT WORKING TALKING TO NPC 1 BLOCK AWAY
+//            }
         }
 
 //        if (hit(27, 16, "right") == true) {
@@ -125,6 +129,14 @@ public class EventHandler {
         gp.ui.currentDialogue = "Teleport!";
         gp.player.worldX = gp.tileSize * 10;
         gp.player.worldY = gp.tileSize * 8;
+    }
+
+    public void speak(Entity entity) {
+        if (gp.keyH.enterPressed == true) {
+            gp.gameState = gp.dialogueState;
+            gp.player.attackCanceled = true;
+            entity.speak();
+        }
     }
 
     public void damagePit(int col, int row, int gameState) {

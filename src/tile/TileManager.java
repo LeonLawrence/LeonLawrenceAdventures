@@ -21,62 +21,93 @@ public class TileManager {
 
         this.gp = gp;
 
-        tile = new Tile[50];
+        tile = new Tile[99];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("/res/maps/worldV2.txt");
+        loadMap("/res/maps/mapV1.txt");
     }
 
     public void getTileImage() {
         //index 0 - 9 are placeholders
-        setUp(0, "cgrass", false);
-        setUp(1, "cgrass", false);
-        setUp(2, "cgrass", false);
-        setUp(3, "cgrass", false);
-        setUp(4, "cgrass", false);
-        setUp(5, "cgrass", false);
-        setUp(6, "cgrass", false);
-        setUp(7, "cgrass", false);
-        setUp(8, "cgrass", false);
-        setUp(9, "cgrass", false);
+        setUp(0, "001", false);
+        setUp(1, "002", false);
+        setUp(2, "003", false);
+        setUp(3, "004", false);
+        setUp(4, "005", false);
+        setUp(5, "006", false);
+        setUp(6, "007", false);
+        setUp(7, "008", false);
+        setUp(8, "009", false);
+        setUp(9, "010", false);
 
-        setUp(10, "cgrass", false);
-        setUp(11, "cgrass", false);
+        setUp(10, "011", false);
+        setUp(11, "012", true);
+        setUp(12, "013", true);
+        setUp(13, "014", true);
+        setUp(14, "015", false);
+        setUp(15, "016", true);
+        setUp(16, "017", true);
+        setUp(17, "018", true);
+        setUp(18, "019", false);
+        setUp(19, "020", true);
 
-        setUp(12, "water00", true);
-        setUp(13, "water01", true);
-        setUp(14, "water02", true);
-        setUp(15, "water03", true);
-        setUp(16, "water04", true);
-        setUp(17, "water05", true);
-        setUp(18, "water06", true);
-        setUp(19, "water07", true);
-        setUp(20, "water08", true);
-        setUp(21, "water09", true);
-        setUp(22, "water10", true);
-        setUp(23, "water11", true);
-        setUp(24, "water12", true);
-        setUp(25, "water13", true);
+        setUp(20, "021", true);
+        setUp(21, "022", false);
+        setUp(22, "023", false);
+        setUp(23, "024", false);
+        setUp(24, "025", true);
+        setUp(25, "026", true);
+        setUp(26, "027", true);
+        setUp(27, "028", true);
+        setUp(28, "029", true);
+        setUp(29, "030", true);
 
-        setUp(26, "csand", false);
-        setUp(27, "road01", false);
-        setUp(28, "road02", false);
-        setUp(29, "road03", false);
-        setUp(30, "road04", false);
-        setUp(31, "road05", false);
-        setUp(32, "road06", false);
-        setUp(33, "road07", false);
-        setUp(34, "road08", false);
-        setUp(35, "road09", false);
-        setUp(36, "road10", false);
-        setUp(37, "road11", false);
-        setUp(38, "road12", false);
+        setUp(30, "031", true);
+        setUp(31, "033", false);
+        setUp(32, "034", true);
+        setUp(33, "035", true);
+        setUp(34, "036", true);
+        setUp(35, "037", true);
+        setUp(36, "038", false);
+        setUp(37, "039", false);
+        setUp(38, "040", false);
+        setUp(39, "041", false);
 
-        setUp(39, "earth", false);
-        setUp(40, "wall", true);
-        setUp(41, "treetop", true);
-        setUp(42, "treebottom", true);
+        setUp(40, "042", false);
+        setUp(41, "043", false);
+        setUp(42, "044", false);
+        setUp(43, "045", false);
+        setUp(44, "046", false);
+        setUp(45, "047", false);
+        setUp(46, "048", true);
+        setUp(47, "049", true);
+        setUp(48, "050", true);
+        setUp(49, "051", true);
+        setUp(50, "052", true);
+        setUp(51, "053", true);
+        setUp(52, "054", false);
+        setUp(53, "055", false);
+        setUp(54, "056", false);
+        setUp(55, "057", false);
+        setUp(56, "058", false);
+        setUp(57, "059", false);
+        setUp(58, "060", false);
+        setUp(59, "061", true);
+        setUp(60, "062", true);
+        setUp(61, "063", true);
+        setUp(62, "064", true);
+        setUp(63, "065", true);
+        setUp(64, "066", true);
+        setUp(65, "067", true);
+        setUp(66, "068", true);
+        setUp(67, "069", true);
+        setUp(68, "070", false);
+        setUp(69, "071", false);
+        setUp(70, "072", true);
+        setUp(71, "073", true);
+        setUp(72, "074", true);
+        setUp(73, "075", false);
 
 
 

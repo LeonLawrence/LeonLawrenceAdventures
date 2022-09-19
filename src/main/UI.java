@@ -31,6 +31,8 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     int subState = 0;
+    int counter = 0;
+    public Entity npc;
 
 
     // delete the two lines below?
@@ -121,6 +123,14 @@ public class UI {
         // GAME OVER STATE
         if (gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
+        }
+
+        // TRANSITION STATE
+
+
+        // TRADE STATE
+        if (gp.gameState == gp.tradeState) {
+            drawTradeScreen();
         }
     }
 
@@ -319,9 +329,9 @@ public class UI {
 
     public void drawDialogueScreen() {
         // WINDOW
-        int x = gp.tileSize * 2;
+        int x = gp.tileSize * 4;
         int y = gp.tileSize / 2;
-        int width = gp.screenWidth - (gp.tileSize * 4);
+        int width = gp.screenWidth - (gp.tileSize * 8);
         int height = gp.tileSize * 3; // value was 3
         drawSubWindow(x, y, width, height);
 
@@ -545,7 +555,7 @@ public class UI {
         y += gp.tileSize * 4;
         g2.drawString(text, x, y);
         if (commandNum == 0) {
-            g2.drawString(">", x-40, y);
+            g2.drawString(">", x - 40, y);
         }
 
         // Back to the title screen
@@ -554,7 +564,7 @@ public class UI {
         y += 55;
         g2.drawString(text, x, y);
         if (commandNum == 1) {
-            g2.drawString(">", x-40, y);
+            g2.drawString(">", x - 40, y);
         }
     }
 
@@ -686,6 +696,72 @@ public class UI {
         g2.fillRect(textX, textY, volumeWidth, 24);
 
     }
+
+    public void drawTradeScreen() {
+        switch (subState) {
+            case 0:
+                trade_select();
+                break;
+            case 1:
+                buy();
+                break;
+            case 2:
+                sell();
+                break;
+        }
+        gp.keyH.enterPressed = false;
+    }
+
+    public void trade_select() {
+        drawDialogueScreen();
+
+        // DRAW WINDOW
+        int x = gp.tileSize * 15;
+        int y = gp.tileSize * 4;
+        int width = gp.tileSize * 4;
+        int height = (int) (gp.tileSize * 4.5);
+        drawSubWindow(x, y, width, height);
+
+        // DRAW TEXTS
+        x += gp.tileSize;
+        y += gp.tileSize;
+
+        g2.drawString("Selections:", x, y);
+        y += gp.tileSize;
+        if (commandNum == 0) {
+            g2.drawString(">", x-24,y);
+        }
+
+        g2.drawString("Buy", x, y);
+        y += gp.tileSize;
+        if (commandNum == 1) {
+            g2.drawString(">", x-24,y);
+            if(gp.keyH.enterPressed == true) {
+                subState = 1;
+            } // 20.09 min
+        }
+
+        g2.drawString("sell", x, y);
+        y += gp.tileSize;
+        if (commandNum == 2) {
+            g2.drawString(">", x-24,y);
+        }
+        g2.drawString("Leave", x, y);
+        y += gp.tileSize;
+        if (commandNum == 3) {
+            g2.drawString(">", x-24,y);
+        }
+
+    }
+
+    public void buy() {
+
+    }
+
+    public void sell() {
+
+    }
+
 
     public int getItemIndexOnSlot() {
         int itemIndex = slotCol + (slotRow * 5);
@@ -820,7 +896,7 @@ public class UI {
         c = new Color(255, 255, 255);
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(gp.tileSize * 2, gp.tileSize / 2, gp.screenWidth - (gp.tileSize * 4), gp.tileSize * 3, 25, 25);
+        g2.drawRoundRect(gp.tileSize * 4, gp.tileSize / 2, gp.screenWidth - (gp.tileSize * 8), gp.tileSize * 3, 25, 25);
 //        g2.drawRoundRect(x + 5, x + 3, width - 10, height - 10, 25, 25);
     }
 
